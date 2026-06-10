@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>동남고 1학년 수행평가 준비</title>
+<link rel="preconnect" href="https://cdn.jsdelivr.net">
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
+<style>
+  :root{
+    --blue:#3182f6;       --blue-weak:#e8f3ff;
+    --green:#0d9488;      --green-weak:#e2f6f3;
+    --violet:#6b4eff;     --violet-weak:#efecff;
+    --amber:#c2630a;      --amber-weak:#fdeede;
+    --ink:#191f28;        --gray:#4e5968;       --gray-weak:#8b95a1;
+    --line:#e5e8eb;       --bg:#f2f4f6;         --card:#ffffff;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{
+    font-family:'Pretendard','Apple SD Gothic Neo',-apple-system,sans-serif;
+    background:var(--bg);color:var(--ink);line-height:1.72;
+    -webkit-font-smoothing:antialiased;letter-spacing:-0.01em;
+  }
+  .wrap{max-width:740px;margin:0 auto;padding:0 20px 100px;}
+
+  /* Hero */
+  .hero{padding:64px 0 40px;text-align:center;}
+  .hero .kicker{display:inline-block;background:var(--blue-weak);color:var(--blue);
+    font-size:14px;font-weight:700;padding:7px 14px;border-radius:999px;margin-bottom:20px;}
+  .hero h1{font-size:34px;font-weight:800;line-height:1.32;letter-spacing:-0.03em;}
+  .hero p{margin-top:16px;color:var(--gray);font-size:17px;}
+  .hero .meta{margin-top:24px;font-size:13px;color:var(--gray-weak);}
+
+  /* Concept cards */
+  .concept-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:48px;}
+  .concept{background:var(--card);border-radius:20px;padding:24px 22px;}
+  .concept .tag{font-size:13px;font-weight:700;padding:5px 11px;border-radius:999px;display:inline-block;margin-bottom:12px;}
+  .concept.exp .tag{background:var(--blue-weak);color:var(--blue);}
+  .concept.ref .tag{background:var(--green-weak);color:var(--green);}
+  .concept h3{font-size:18px;font-weight:800;margin-bottom:8px;}
+  .concept p{font-size:14.5px;color:var(--gray);}
+
+  /* Poem section */
+  .poem-block{margin-bottom:60px;}
+  .poem-head{display:flex;align-items:baseline;gap:12px;margin:0 4px 22px;}
+  .poem-head .num{font-size:15px;font-weight:800;color:var(--blue);}
+  .poem-head h2{font-size:27px;font-weight:800;letter-spacing:-0.03em;}
+  .poem-head .author{font-size:16px;color:var(--gray);font-weight:600;}
+
+  .poem-card{background:linear-gradient(180deg,#ffffff 0%,#fbfcfe 100%);
+    border:1px solid var(--line);border-radius:24px;padding:40px 36px;margin-bottom:18px;
+    box-shadow:0 1px 2px rgba(0,0,0,0.02);}
+  .poem-card .poem-title{text-align:center;font-size:20px;font-weight:800;margin-bottom:24px;}
+  .poem-text{text-align:center;font-size:17px;line-height:2.1;color:#333d4b;
+    white-space:pre-line;word-break:keep-all;}
+  .poem-card .credit{margin-top:24px;text-align:center;font-size:13px;color:var(--gray-weak);}
+
+  /* Section labels */
+  .section-label{display:flex;align-items:center;gap:10px;margin:34px 4px 16px;}
+  .section-label .dot{width:9px;height:9px;border-radius:3px;}
+  .section-label.exp .dot{background:var(--blue);}
+  .section-label.ref .dot{background:var(--green);}
+  .section-label.expr .dot{background:var(--violet);}
+  .section-label.intp .dot{background:var(--amber);}
+  .section-label h3{font-size:20px;font-weight:800;}
+  .section-label .en{font-size:13px;color:var(--gray-weak);font-weight:600;}
+
+  .card{background:var(--card);border-radius:20px;padding:26px 26px;margin-bottom:14px;}
+  .card h4{font-size:16px;font-weight:800;margin-bottom:14px;display:flex;align-items:center;gap:8px;}
+  .card h4 .chip{font-size:12px;font-weight:700;color:var(--blue);background:var(--blue-weak);padding:3px 9px;border-radius:7px;}
+  .card.ref h4 .chip{color:var(--green);background:var(--green-weak);}
+  .card p{font-size:15.5px;color:var(--gray);margin-bottom:12px;}
+  .card p:last-child{margin-bottom:0;}
+  .card strong{color:var(--ink);font-weight:700;}
+
+  /* timeline */
+  .timeline{margin-top:6px;}
+  .timeline .row{display:flex;gap:16px;padding:11px 0;border-bottom:1px solid var(--line);}
+  .timeline .row:last-child{border-bottom:none;}
+  .timeline .yr{flex:0 0 84px;font-weight:800;font-size:14px;color:var(--blue);}
+  .card.ref .timeline .yr{color:var(--green);}
+  .timeline .ev{font-size:15px;color:var(--gray);}
+  .timeline .ev b{color:var(--ink);font-weight:700;}
+
+  /* work pills */
+  .pills{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px;}
+  .pill{background:#f2f4f6;color:#333d4b;font-size:14px;font-weight:600;padding:8px 14px;border-radius:11px;}
+  .pill.hi{background:var(--blue-weak);color:var(--blue);}
+
+  /* technique list */
+  .tech-card{background:var(--card);border-radius:20px;padding:14px 26px 6px;margin-bottom:14px;}
+  .tech{display:flex;gap:16px;padding:18px 0;border-bottom:1px solid var(--line);}
+  .tech:last-child{border-bottom:none;}
+  .tech .name{flex:0 0 96px;}
+  .tech .name span{display:inline-block;background:var(--violet-weak);color:var(--violet);
+    font-size:13.5px;font-weight:800;padding:5px 11px;border-radius:9px;}
+  .tech .desc{font-size:15px;color:var(--gray);}
+  .tech .desc b{color:var(--ink);font-weight:700;}
+  .tech .desc .ex{color:var(--violet);font-weight:600;}
+
+  /* interpretation card */
+  .intp-card{background:var(--card);border-radius:20px;padding:28px 28px;
+    border:1px solid var(--amber-weak);margin-bottom:14px;}
+  .intp-card p{font-size:15.5px;color:var(--gray);margin-bottom:13px;}
+  .intp-card p:last-child{margin-bottom:0;}
+  .intp-card strong{color:var(--ink);font-weight:700;}
+  .theme{background:var(--amber-weak);border-radius:14px;padding:16px 18px;margin-top:6px;}
+  .theme .lab{font-size:12px;font-weight:800;color:var(--amber);display:block;margin-bottom:6px;letter-spacing:0.02em;}
+  .theme p{font-size:15px;color:#3a2a16;margin:0;font-weight:600;}
+
+  .divider{height:1px;background:var(--line);margin:54px 0;border:none;}
+
+  footer{text-align:center;color:var(--gray-weak);font-size:13px;padding-top:8px;line-height:1.8;}
+  footer .src{margin-top:10px;font-size:12px;}
+
+  @media (max-width:560px){
+    .hero h1{font-size:27px;}
+    .concept-grid{grid-template-columns:1fr;}
+    .poem-card{padding:32px 22px;}
+    .poem-head h2{font-size:23px;}
+    .timeline .row{flex-direction:column;gap:2px;}
+    .timeline .yr{flex:none;}
+    .tech{flex-direction:column;gap:8px;}
+    .tech .name{flex:none;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- HERO -->
+  <header class="hero">
+    <span class="kicker">문학 수행평가</span>
+    <h1>동남고 1학년<br>수행평가 준비</h1>
+    <p>강소천 「새벽종」 · 윤동주 「바람이 불어」</p>
+    <div class="meta">표현론(작가론) · 반영론(시대론) · 표현법 · 전체 해석</div>
+  </header>
+
+  <!-- CONCEPT -->
+  <section class="concept-grid">
+    <div class="concept exp">
+      <span class="tag">표현론</span>
+      <h3>작가론</h3>
+      <p>작품을 <strong>작가의 체험·생애·사상</strong>의 표현으로 보는 관점이다. 작가의 삶, 대표작, 작품 경향을 살핀다.</p>
+    </div>
+    <div class="concept ref">
+      <span class="tag">반영론</span>
+      <h3>시대론</h3>
+      <p>작품을 <strong>시대 현실의 반영</strong>으로 보는 관점이다. 작품이 창작된 시대적 현실과 배경을 살핀다.</p>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       POEM 1 : 강소천 - 새벽종
+  ========================================================== -->
+  <section class="poem-block">
+    <div class="poem-head">
+      <span class="num">시 01</span>
+      <h2>새벽종</h2>
+      <span class="author">강소천</span>
+    </div>
+
+    <div class="poem-card">
+      <div class="poem-title">새벽종</div>
+      <div class="poem-text">아름다운 새벽종 소리가
+내 귓가에 날아와 앉는다.
+
+민들레씨가 바람에 흩날리듯
+종소리는 종 속에서 마악 쏟아져온다.
+
+종소리는 맑은 공기를 타고 훨훨 날아
+마을로 집으로 찾아든다.
+
+종소리는 문틈을 새어 방 안으로 들어와
+앉을 자리를 찾아본다.
+
+일찍이 잠이 깬 아이들의 귓가에만
+아름다운 종소리는 날아와 앉는대요.</div>
+      <div class="credit">— 강소천</div>
+    </div>
+
+    <!-- 작가론 -->
+    <div class="section-label exp">
+      <span class="dot"></span><h3>작가론</h3>
+      <span class="en">표현론 · 강소천(1915~1963)</span>
+    </div>
+
+    <div class="card">
+      <h4><span class="chip">작가의 생애</span></h4>
+      <p>강소천은 1915년 <strong>함경남도 고원군 수동면 미둔리</strong>에서 2남 4녀 중 둘째 아들로 태어났다. 할아버지 대부터 기독교를 믿은 개화된 집안이었으며 살림도 넉넉하였다. '산 좋고 물 좋은' 농촌에서 보낸 유년의 추억은 훗날 그의 작품 곳곳에 그대로 반영되었다.</p>
+      <p>고원공립보통학교를 거쳐 기독교 재단인 <strong>함흥 영생고등보통학교</strong>에 진학하였고, 소학교 4~5학년 때부터 신문·잡지에 작품을 발표하였다. 영생고보 재학 중에는 <strong>일제의 한국어 탄압에 반발하여 동맹휴학</strong>에 가담하였고, 이 일로 용정의 외삼촌 댁에서 1년을 지내며 문학적 신념을 다졌다. 1931년 잡지 <strong>『신소년』에 동요시를 발표하며 등단</strong>한 뒤 『아이생활』·『어린이』 등에 꾸준히 작품을 실었다. 한편 영생고보 영어교사로 부임한 시인 <strong>백석</strong>과 교유하였는데, 백석은 훗날 그의 첫 시집 『호박꽃 초롱』의 서시를 직접 써 주었다.</p>
+      <p>광복 후 북에 남아 활동하다가 <strong>1950년 12월 흥남 철수 때 원고 뭉치만 들고 단신으로 월남</strong>하였다. 거제도 장승포항에 도착해 한때 생선 장사로 연명하다 부산에 정착하였고, 1951년 육군 정훈대대에서 종군하며 남한 사회에 자리를 잡았다. 이후 김동리·박목월·최태호 등 문인들과 교유하며 아동잡지 『어린이 다이제스트』 주간을 맡는 등 창작 활동을 활발히 펼쳤다.</p>
+      <p>그는 작품 활동에 그치지 않고 <strong>마해송 등과 함께 「어린이헌장」을 기초·반포</strong>하였으며, 교과서 편찬 사업에 참여하고 벽촌 어린이에게 도서·학용품을 보급하는 등 어린이 인권과 교육에 헌신하여 한국 아동문학의 핵심 인물이 되었다. 1963년 아동소설 「어머니의 초상화」로 제2회 5월문예상 본상을 받았으나 같은 해 <strong>49세로 타계</strong>하였고, 그의 공로를 기려 1965년 '소천아동문학상'이 제정되었다.</p>
+      <div class="timeline">
+        <div class="row"><span class="yr">1915</span><span class="ev">함경남도 고원 출생, 기독교 집안</span></div>
+        <div class="row"><span class="yr">1931</span><span class="ev"><b>『신소년』</b>에 동요시 발표하며 등단</span></div>
+        <div class="row"><span class="yr">1941</span><span class="ev">동요시집 <b>『호박꽃 초롱』</b> 발간 (박문서관)</span></div>
+        <div class="row"><span class="yr">1950</span><span class="ev">흥남 철수 때 <b>단신 월남</b></span></div>
+        <div class="row"><span class="yr">1963</span><span class="ev">49세로 타계</span></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h4><span class="chip">대표작</span></h4>
+      <p>운문(동요·동시)과 산문(동화·소년소설)을 모두 아우른 아동문학가로, 평생 <strong>동요·동시만 약 270여 편</strong>을 남겼다. 월남 이후에는 동화·소년소설 창작에 더욱 힘을 쏟았다.</p>
+      <div class="pills">
+        <span class="pill hi">동요시집 『호박꽃 초롱』 (1941)</span>
+        <span class="pill">「꿈을 찍는 사진관」 (1954)</span>
+        <span class="pill">동화집 『조그만 사진첩』 (1952)</span>
+        <span class="pill">동화집 『종소리』</span>
+        <span class="pill">동화 「돌멩이」</span>
+        <span class="pill">소년소설집 『해바라기 피는 마을』</span>
+      </div>
+      <p style="margin-top:16px;">첫 시집 <strong>『호박꽃 초롱』</strong>은 시인 <strong>백석이 서시(序詩)를 써 주고</strong> 당대 유명 화가 정현웅이 장정을 맡은 시집이다. 무엇보다 일제의 국어 말살 정책이 극에 달한 <strong>1941년에 '우리말·우리글'로 펴낸 창작 동시집</strong>이라는 점에서, 우리 아동문학사에서 일제강점기 마지막으로 간행된 동요시집으로 그 의미가 크다.</p>
+    </div>
+
+    <div class="card">
+      <h4><span class="chip">작품 경향</span></h4>
+      <p>강소천 시의 핵심은 <strong>순수한 동심(童心)</strong>이다. 자아와 세계, 내면과 대상이 하나로 어우러지는 <strong>서정성</strong>을 추구하였으며, 1930년대 시문학의 순수주의 흐름과도 맞닿아 있다. 맑고 <strong>감각적인 이미지와 은유적 상상력</strong>으로 자연을 그렸고, 동심의 눈으로 사물과 하나가 되는 '시적 환상'을 즐겨 표현하였다. 음악성이 강한 정형의 동요에서 출발하여 점차 <strong>자유로운 운율의 동시</strong>로 나아갔다.</p>
+      <p>산문에서는 <strong>'꿈'과 '환상'</strong>을 즐겨 끌어들였다. 「꿈을 찍는 사진관」처럼 <strong>'상실과 찾음'의 구조</strong> 위에서 잃어버린 것을 꿈을 통해 회복하려는 이야기를 즐겨 썼다.</p>
+      <p>그의 작품 세계에는 <strong>기독교 의식(사랑의 실천), 모성 의식(고향과 어머니에 대한 그리움), 전쟁 체험과 월남 의식</strong>이 깊이 배어 있다. 이는 분단과 전쟁으로 고향을 잃은 실향민으로서의 삶이 작품에 그대로 투영된 결과이다.</p>
+    </div>
+
+    <!-- 시대론 -->
+    <div class="section-label ref">
+      <span class="dot"></span><h3>시대론</h3>
+      <span class="en">반영론 · 일제강점기~전후</span>
+    </div>
+
+    <div class="card ref">
+      <h4><span class="chip">시대적 현실</span></h4>
+      <p>강소천은 <strong>일제강점기 → 광복 → 분단 → 한국전쟁 → 실향</strong>으로 이어지는, 20세기 한국사의 굵직한 사건을 온몸으로 통과한 작가이다.</p>
+      <p>특히 그가 활동을 다진 1930~40년대는 <strong>일제의 국어 말살 정책</strong>이 극으로 치닫던 시기였다. 우리말로 글을 쓰는 것 자체가 위태롭던 때에, 그는 어린이를 위한 우리말 동시를 지켜냈다. 1941년에 펴낸 『호박꽃 초롱』은 이러한 암흑기에 모국어로 간행된 동요시집으로, "일제에 대한 외침이자 독립운동의 일환"이라는 평가를 받기도 한다.</p>
+      <p>광복 이후에는 <strong>분단과 6·25 전쟁</strong>이 그의 삶을 송두리째 바꾸어 놓았다. 1950년 흥남 철수 때 가족을 북에 두고 홀로 월남하면서, 그는 평생 <strong>고향을 잃은 실향민</strong>으로 살게 된다. 전쟁이 남긴 상실과 그리움은 이후 그의 동화·동시를 관통하는 정서가 되었다.</p>
+    </div>
+
+    <div class="card ref">
+      <h4><span class="chip">작품의 배경</span></h4>
+      <p>강소천 동시의 바탕에는 <strong>고향의 아름다운 자연과 유년의 추억</strong>이 자리한다. 실제로 그의 동요시 「닭」은 광복 후 남한의 국민학교 국어 교과서에 실릴 만큼 널리 사랑받았다. 「새벽종」의 맑은 새벽 공기, 마을과 집, 잠 깬 아이들의 풍경도 이러한 정서의 연장선에 있다.</p>
+      <p>전쟁의 상처가 깊던 1950년대에 강소천이 어린이에게 들려주려 한 것은 <strong>꿈과 희망</strong>이었다. 어두운 시대일수록 <strong>'아름다운 종소리'와 '새벽'이 상징하는 맑음·희망·순수</strong>는 더 소중하게 다가온다. 일찍 잠이 깬 아이에게만 종소리가 와 앉는다는 결말은, 깨어 있는 순수한 마음에 비로소 희망이 깃든다는 의미로 읽을 수 있다.</p>
+    </div>
+
+    <!-- 표현법 -->
+    <div class="section-label expr">
+      <span class="dot"></span><h3>표현법</h3>
+      <span class="en">시어와 표현 기법</span>
+    </div>
+    <div class="tech-card">
+      <div class="tech">
+        <div class="name"><span>의인법</span></div>
+        <div class="desc">종소리가 <span class="ex">"날아와 앉는다", "찾아든다", "앉을 자리를 찾아본다"</span>처럼 사람의 행동을 하는 것으로 표현하여, 추상적인 소리를 <b>살아 있는 생명체</b>로 형상화하였다.</div>
+      </div>
+      <div class="tech">
+        <div class="name"><span>직유법</span></div>
+        <div class="desc"><span class="ex">"민들레씨가 바람에 흩날리듯"</span> — 연결어 '~듯'을 사용하여 종소리가 쏟아지는 모습을 민들레씨에 빗대었다.</div>
+      </div>
+      <div class="tech">
+        <div class="name"><span>반복·점층</span></div>
+        <div class="desc"><span class="ex">'종소리는~'</span>을 반복하면서, 소리가 닿는 공간을 <b>마을 → 집 → 방 안 → 귓가</b>로 점점 좁혀 가는 점층적 구성을 보인다.</div>
+      </div>
+      <div class="tech">
+        <div class="name"><span>심상</span></div>
+        <div class="desc">청각적 심상(종소리)을 <span class="ex">"맑은 공기를 타고 훨훨 날아"</span>처럼 시각·촉각적으로 옮겨 그린 감각적 표현이 두드러진다.</div>
+      </div>
+      <div class="tech">
+        <div class="name"><span>어조</span></div>
+        <div class="desc">마지막 행의 <span class="ex">'~앉는대요'</span>라는 정겨운 구어체 종결로, 동심에 어울리는 <b>다정하고 친근한 어조</b>를 살렸다.</div>
+      </div>
+    </div>
+
+    <!-- 전체 해석 -->
+    <div class="section-label intp">
+      <span class="dot"></span><h3>작품 전체 해석</h3>
+      <span class="en">시 한 편 읽기</span>
+    </div>
+    <div class="intp-card">
+      <p>이 시는 새벽종 소리가 멀리 퍼져 나가 잠에서 깬 아이들의 귓가에 가 닿는 정경을 그린 동시이다. 화자는 종소리를 살아 움직이는 존재처럼 그리며, 종소리가 종 속에서 쏟아져 <strong>마을과 집, 방 안으로 점점 다가오는 과정</strong>을 차근차근 따라간다.</p>
+      <p>마지막 연에서 <strong>"일찍이 잠이 깬 아이들의 귓가에만"</strong> 종소리가 와 앉는다는 진술은, 맑고 깨어 있는 순수한 마음에만 아름다움과 희망이 깃든다는 뜻으로 읽힌다. 어두운 시대를 살았던 작가가 어린이의 동심을 통해 맑은 새벽과 희망을 노래한 작품이라 할 수 있다.</p>
+      <div class="theme">
+        <span class="lab">주제</span>
+        <p>맑은 새벽종 소리에 담긴 순수한 동심과 희망</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- =========================================================
+       POEM 2 : 윤동주 - 바람이 불어
+  ========================================================== -->
+  <section class="poem-block">
+    <div class="poem-head">
+      <span class="num">시 02</span>
+      <h2>바람이 불어</h2>
+      <span class="author">윤동주</span>
+    </div>
+
+    <div class="poem-card">
+      <div class="poem-title">바람이 불어</div>
+      <div class="poem-text">바람이 어디로부터 불어와
+어디로 불려 가는 것일까,
+
+바람이 부는데
+내 괴로움에는 이유가 없다.
+
+내 괴로움에는 이유가 없을까,
+
+단 한 여자를 사랑한 일도 없다.
+시대를 슬퍼한 일도 없다.
+
+바람이 자꾸 부는데
+내 발이 반석 위에 섰다.
+
+강물이 자꾸 흐르는데
+내 발이 언덕 위에 섰다.</div>
+      <div class="credit">— 윤동주</div>
+    </div>
+
+    <!-- 작가론 -->
+    <div class="section-label exp">
+      <span class="dot"></span><h3>작가론</h3>
+      <span class="en">표현론 · 윤동주(1917~1945)</span>
+    </div>
+
+    <div class="card">
+      <h4><span class="chip">작가의 생애</span></h4>
+      <p>윤동주는 1917년 12월 30일 <strong>북간도 명동마을</strong>에서 태어났다. 이곳은 그의 증조부가 1880년대에 두만강을 건너 정착한 이래, 기독교 신앙과 민족 교육을 중심으로 형성된 한인 공동체였다. 윤동주는 이런 분위기 속에서 자라 어려서부터 문학에 깊은 관심을 보였다.</p>
+      <p>그는 민족 교육의 거점이던 <strong>명동학교</strong>에서 김약연 목사에게 배웠고, 훗날 독립운동가가 된 사촌 <strong>송몽규</strong>, 목사이자 통일운동가가 된 <strong>문익환</strong> 등과 함께 공부하며 민족의식을 키웠다. 평양 숭실중학 등을 거쳐 1938년 <strong>연희전문학교</strong>에 입학하였고, 정지용의 시에서 깊은 영향을 받았다.</p>
+      <p>연희전문 시절 활발히 시와 산문을 썼으나 일제강점기의 혹독한 검열 탓에 출판하지 못하였다. 졸업을 앞두고 시 19편을 묶어 자선 시집 <strong>『하늘과 바람과 별과 시』</strong>를 펴내려 하였으나, 일제 검열에 걸릴 것을 우려한 스승 이양하 교수의 만류로 무산되었다.</p>
+      <p>이후 일본으로 건너가 영문학을 전공하면서도 <strong>끝까지 한글로 시를 쓰며</strong> 자신을 성찰하였다. 1943년 여름, 귀향을 준비하던 중 <strong>'독립운동' 혐의로 일본 특고경찰에 체포</strong>되었고, 1945년 2월 해방을 6개월 앞두고 <strong>후쿠오카 감옥에서 옥사</strong>하였다. 그의 시는 친구 강처중과 후배 정병욱이 지켜낸 원고를 바탕으로, <strong>1948년 정지용의 서문을 붙인 유고 시집</strong>으로 세상에 나와 오늘날까지 사랑받고 있다.</p>
+      <div class="timeline">
+        <div class="row"><span class="yr">1917</span><span class="ev">북간도 명동마을 출생</span></div>
+        <div class="row"><span class="yr">1938</span><span class="ev"><b>연희전문학교</b> 입학</span></div>
+        <div class="row"><span class="yr">1941</span><span class="ev">「바람이 불어」 창작 · 자선 시집 묶음 (출간 무산)</span></div>
+        <div class="row"><span class="yr">1943</span><span class="ev">일본 유학 중 <b>독립운동 혐의로 체포</b></span></div>
+        <div class="row"><span class="yr">1945</span><span class="ev"><b>후쿠오카 감옥에서 옥사</b> (해방 6개월 전)</span></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h4><span class="chip">대표작</span></h4>
+      <p>유고 시집 <strong>『하늘과 바람과 별과 시』</strong>에 그의 대표작이 대부분 실려 있다. 「바람이 불어」도 이 시집을 위해 골라 둔 19편 가운데 한 편이다.</p>
+      <div class="pills">
+        <span class="pill hi">시집 『하늘과 바람과 별과 시』</span>
+        <span class="pill">「서시」</span>
+        <span class="pill">「별 헤는 밤」</span>
+        <span class="pill">「자화상」</span>
+        <span class="pill">「십자가」</span>
+        <span class="pill">「쉽게 씌어진 시」</span>
+        <span class="pill">「참회록」</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <h4><span class="chip">작품 경향</span></h4>
+      <p>윤동주의 시 세계에는 <strong>저항성, 민족 서정성, 자아 성찰, 동시성, 기독교적 성격</strong>이 두루 담겨 있어, 한 가지로만 묶기 어려운 폭넓고 깊은 시인이다.</p>
+      <p>그 중심에는 늘 <strong>'부끄러움'과 자기 성찰</strong>이 자리한다. 폭력적인 현실의 고통을 인간으로서 차마 감당하기 어렵다는 데서 비롯된 섬세한 양심이, 그의 시 곳곳에 '부끄럼'의 정서로 나타난다. 엄혹한 현실을 똑바로 바라보면서도 그것을 넘어서려는 <strong>인간 정신의 숭고함</strong>을 노래하였다.</p>
+    </div>
+
+    <!-- 시대론 -->
+    <div class="section-label ref">
+      <span class="dot"></span><h3>시대론</h3>
+      <span class="en">반영론 · 일제강점기 말기(1941)</span>
+    </div>
+
+    <div class="card ref">
+      <h4><span class="chip">시대적 현실</span></h4>
+      <p>윤동주가 나고 자란 <strong>북간도</strong>는 서구 열강과 중국, 일본의 이해가 부딪치던 땅으로, 한인들은 법적 지위가 불안정한 가운데 살아야 했다. 그래도 명동학교 같은 <strong>민족 교육·항일의 거점</strong>이 자리하여, 윤동주는 일찍부터 민족의식과 신앙을 함께 키울 수 있었다.</p>
+      <p>그러나 「바람이 불어」가 쓰인 1941년은 <strong>일제강점기 말기</strong>로, 억압이 가장 심하던 때였다. <strong>창씨개명 강요, 태평양전쟁, 한국어 사용 탄압과 검열</strong>이 일상이던 시대였다. 유학을 가려면 창씨개명을 해야 했고, 한글로 쓴 시는 출판조차 어려웠다. 식민지 청년 윤동주에게 시대는 거대한 <strong>'바람'</strong>처럼 끊임없이 흔들어 오는 현실이었다.</p>
+    </div>
+
+    <div class="card ref">
+      <h4><span class="chip">작품의 배경</span></h4>
+      <p>이 시는 윤동주가 <strong>연희전문학교 재학 시절(1941년)</strong>에 쓴 작품이다. 조국이 식민지가 된 어두운 현실에 실망하면서도, 한글로 시 쓰는 일에 더욱 몰두하던 시기였다. 민족 공동체에서 자란 그였기에 시대를 외면할 수 없었고, 그 양심이 곧 '까닭 없는 괴로움'의 뿌리가 된다.</p>
+      <p>시 속의 대비를 보면 시대 인식이 또렷하게 드러난다. <strong>'바람'과 '강물'은 끊임없이 움직이는 시대 현실</strong>을, <strong>'반석'과 '언덕 위에 선 발'은 그 흐름에 동참하지 못하고 멈춰 선 화자</strong>를 상징한다. 격동하는 시대 앞에서 적극적으로 행동하지 못하는 지식인의 갈등이, 이 짧은 시에 압축되어 있다.</p>
+    </div>
+
+    <!-- 표현법 -->
+    <div class="section-label expr">
+      <span class="dot"></span><h3>표현법</h3>
+      <span class="en">시어와 표현 기법</span>
+    </div>
+    <div class="tech-card">
+      <div class="tech">
+        <div class="name"><span>설의법</span></div>
+        <div class="desc"><span class="ex">"어디로 불려 가는 것일까", "내 괴로움에는 이유가 없을까"</span>처럼 의문형 문장을 던져, 답을 구하기보다 <b>화자의 내면 갈등</b>을 부각한다.</div>
+      </div>
+      <div class="tech">
+        <div class="name"><span>반어법</span></div>
+        <div class="desc"><span class="ex">"시대를 슬퍼한 일도 없다"</span> — 실제로는 시대를 깊이 아파하면서도 그렇지 않은 듯 말함으로써, 오히려 <b>부끄러움과 자책</b>을 강조한다.</div>
+      </div>
+      <div class="tech">
+        <div class="name"><span>상징</span></div>
+        <div class="desc"><span class="ex">'바람·강물'</span>은 끊임없이 움직이는 시대 현실(시련)을, <span class="ex">'반석·언덕 위에 선 발'</span>은 그 흐름에 동참하지 못하고 멈춰 선 화자를 상징한다.</div>
+      </div>
+      <div class="tech">
+        <div class="name"><span>대구법</span></div>
+        <div class="desc"><span class="ex">"바람이 자꾸 부는데 / 내 발이 반석 위에 섰다"</span>와 <span class="ex">"강물이 자꾸 흐르는데 / 내 발이 언덕 위에 섰다"</span>가 같은 문장 구조로 짝을 이루어 운율과 의미를 강조한다.</div>
+      </div>
+      <div class="tech">
+        <div class="name"><span>대조</span></div>
+        <div class="desc">쉼 없이 움직이는 자연(<b>바람·강물</b>)과 한자리에 멈춰 선 화자(<b>선 발</b>)를 맞세워, 화자의 무력감을 선명하게 드러낸다.</div>
+      </div>
+    </div>
+
+    <!-- 전체 해석 -->
+    <div class="section-label intp">
+      <span class="dot"></span><h3>작품 전체 해석</h3>
+      <span class="en">시 한 편 읽기</span>
+    </div>
+    <div class="intp-card">
+      <p>이 시는 까닭 모를 괴로움의 정체를 끈질기게 되묻는 <strong>자기 성찰의 시</strong>이다. 화자는 "바람이 부는데 내 괴로움에는 이유가 없다"고 말하지만, 곧 "이유가 없을까"라고 되물으며 자신의 내면을 파고든다.</p>
+      <p><strong>"단 한 여자를 사랑한 일도 없다 / 시대를 슬퍼한 일도 없다"</strong>는 진술은 반어로, 사실은 시대의 고통을 외면할 수 없으면서도 적극적으로 행동하지 못하는 자신에 대한 부끄러움을 드러낸다.</p>
+      <p>마지막 두 연에서 바람과 강물은 쉼 없이 흐르는데 화자의 발은 반석과 언덕 위에 멈춰 서 있다. 이 대비는 <strong>격동하는 시대 앞에서 방관자로 머무는 지식인의 무력감과 자기반성</strong>을 함축한다. 결국 이 시는 일제강점기라는 현실과 그 앞에서 갈등하는 청년의 양심을 함께 보여 준다.</p>
+      <div class="theme">
+        <span class="lab">주제</span>
+        <p>부당한 시대 앞에서 행동하지 못하는 자신에 대한 부끄러움과 성찰</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <footer>
+    문학 수행평가 학습 자료 · 강소천 「새벽종」 / 윤동주 「바람이 불어」<br>
+    작가론(표현론) · 시대론(반영론) · 표현법 · 전체 해석
+    <div class="src">
+      참고 자료<br>
+      · 김경흠, 「강소천 문학 연구」, 동아대학교 박사학위논문, 2018<br>
+      · 송하은, 「윤동주의 삶과 문학의 기억 전승 작업에 대한 고찰」, 이화여대 석사학위논문, 2019<br>
+      · 한국민족문화대백과사전 '강소천'(E0001238) · '윤동주'(E0042294) · '호박꽃 초롱'(E0063757)
+    </div>
+  </footer>
+
+</div>
+</body>
+</html>
